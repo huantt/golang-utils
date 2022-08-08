@@ -46,12 +46,14 @@ func TestFindAll(t *testing.T) {
 		{inputClass: "A", expectedStudentIds: []int{1, 2}},
 	}
 
-	for i, testCase := range testCases {
+	for _, testCase := range testCases {
 		matchingStudents := FindAll(students, func(student *Student) bool {
 			return student.class == testCase.inputClass
 		})
-		if len(matchingStudents) != len(testCase.expectedStudentIds) {
-			t.Fatalf("Case: %d: Expected %d elements - Got %d elements", i, len(testCase.expectedStudentIds), len(matchingStudents))
+		for i, student := range matchingStudents {
+			if student.id != testCase.expectedStudentIds[i] {
+				t.Fatalf("Expected student ID %d - Got %d", testCase.expectedStudentIds[i], student.id)
+			}
 		}
 	}
 }
