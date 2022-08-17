@@ -7,3 +7,15 @@ func Transform[T any, R any](collection []*T, transform func(*T) R) []R {
 	}
 	return result
 }
+
+func Unique[T comparable](collection []T) []T {
+	tmpMap := make(map[T]bool)
+	var result []T
+	for _, entry := range collection {
+		if _, value := tmpMap[entry]; !value {
+			tmpMap[entry] = true
+			result = append(result, entry)
+		}
+	}
+	return result
+}

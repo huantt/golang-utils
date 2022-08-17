@@ -41,5 +41,10 @@ studentsByClass := GroupBy[Student](students, func(student *Student) string {
 })
 ```
 
+#### Unique[T comparable](collection []T) []T
+```go
+uniqueValues := Unique(values)
+```
+
 # Required
 Golang 1.8 or above

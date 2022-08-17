@@ -27,3 +27,27 @@ func TestTransform(t *testing.T) {
 	}
 
 }
+
+func TestUnique(t *testing.T) {
+	testCases := []struct {
+		inputValues    []string
+		expectedValues []string
+	}{
+		{
+			inputValues:    []string{"A", "a", "A", "B", "C"},
+			expectedValues: []string{"A", "a", "B", "C"},
+		},
+	}
+
+	for i, testCase := range testCases {
+		uniqueValues := Unique(testCase.inputValues)
+		if len(uniqueValues) != len(testCase.expectedValues) {
+			t.Fatalf("Case %d: Expceted %d unqiue elements - Got %d", i, len(testCase.expectedValues), len(uniqueValues))
+		}
+		for k, expectedValue := range testCase.expectedValues {
+			if uniqueValues[k] != expectedValue {
+				t.Fatalf("Case %d: Expceted %s - Got %s", i, expectedValue, uniqueValues[k])
+			}
+		}
+	}
+}
